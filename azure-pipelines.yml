@@ -1,3 +1,6 @@
+variables:
+  projectDirectory: 'bmi'
+
 trigger:
 - master
 
@@ -5,15 +8,26 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-#  - task: FlutterInstall@0
-#   inputs:
-#     channel: 'stable'
-#     version: 'latest'
+- task: FlutterInstall@0
+  inputs:
+    channel: 'stable'
+    version: 'latest'
+
 - task: FlutterBuild@0
   inputs:
     target: 'apk'
-    projectDirectory: './build'
-    flutterDirectory: 'PATH'
+    projectDirectory: $(projectDirectory)
+
+
+# - task: AndroidSigning@3
+#   displayName: 'Signing and aligning APK file(s) **/*.apk'
+#   inputs:
+#     apkFiles: '**/*.apk'
+#     apksign: true
+#     apksignerKeystoreFile: key.jks
+#     apksignerKeystorePassword: $(keypassword)
+#     apksignerKeystoreAlias: $(key)
+#     apksignerKeyPassword: $(keypassword)
 - task: DownloadBuildArtifacts@1
   inputs:
     buildType: 'current'
