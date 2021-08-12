@@ -1,5 +1,5 @@
 variables:
-  projectDirectory: 'bmi'
+  projectDirectory: 'bmi-Flutter'
 
 trigger:
 - master
