@@ -21,18 +21,10 @@ jobs:
           projectDirectory: $(Build.SourcesDirectory)
           buildNumber: ''
       
-      
 
-      - task: PublishBuildArtifacts@1
-        inputs:
-          PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-          ArtifactName: 'drop'
-          publishLocation: 'Container'
-
-      - task: DownloadBuildArtifacts@1
-        inputs:
-          buildType: 'current'
-          downloadType: 'single'
-          artifactName: 'drop'
-          downloadPath: '$(System.ArtifactsDirectory)'
+      - publish: $(System.DefaultWorkingDirectory)/bin/app
+        artifact: app
+        
+      - download: current
+        artifact: app
 
