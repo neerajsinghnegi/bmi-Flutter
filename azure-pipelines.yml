@@ -21,10 +21,9 @@ jobs:
           projectDirectory: $(Build.SourcesDirectory)
           buildNumber: ''
       
-
-      - publish: $(System.DefaultWorkingDirectory)/bin/app
-        artifact: app
+      - task: PublishPipelineArtifact@1
+        inputs:
+          targetPath: '$(Pipeline.Workspace)'
+          artifactType: 'pipeline'
+          artifactName: 'drop'
         
-      - download: current
-        artifact: app
-
