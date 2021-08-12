@@ -19,6 +19,7 @@ jobs:
         inputs:
           target: 'apk'
           projectDirectory: $(Build.SourcesDirectory)
+          buildNumber: ''
 
 
 # - task: AndroidSigning@3
