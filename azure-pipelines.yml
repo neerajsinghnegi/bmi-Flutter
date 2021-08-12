@@ -31,9 +31,9 @@ jobs:
 #     apksignerKeystorePassword: $(keypassword)
 #     apksignerKeystoreAlias: $(key)
 #     apksignerKeyPassword: $(keypassword)
-# - task: DownloadBuildArtifacts@1
-#   inputs:
-#     buildType: 'current'
-#     downloadType: 'single'
-#     artifactName: 'demo'
-#     downloadPath: '$(System.ArtifactsDirectory)'
+      - task: DownloadBuildArtifacts@1
+        inputs:
+          buildType: 'current'
+          downloadType: 'single'
+          artifactName: 'demo'
+          downloadPath: '$(System.ArtifactsDirectory)'
