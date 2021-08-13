@@ -1,5 +1,5 @@
 variables:
-  pdir: 'bmi-Flutter'
+  projectName: 'bmi-Flutter'
 
 trigger:
 - master
@@ -20,10 +20,18 @@ jobs:
           target: 'apk'
           projectDirectory: $(Build.SourcesDirectory)
           buildNumber: ''
-      
-      - task: PublishPipelineArtifact@1
+
+      - task: CopyFiles@2
         inputs:
-          targetPath: '$(Pipeline.Workspace)'
-          artifactType: 'pipeline'
-          artifactName: 'drop'
+          SourceFolder: '$(Build.SourcesDirectory)/$(projectName)/android/app/build/outputs/apk/$(buildConfiguration)'
+          contents: "**/app-$(buildConfiguration).apk"
+          targetFolder: "$(Build.ArtifactStagingDirectory)/$(projectName)"
+        displayName: "Copy unsigned APK to staging directory"
+
+      - task: PublishBuildArtifacts@1
+        inputs:
+          PathtoPublish: "$(Build.ArtifactStagingDirectory)/$(projectName)"
+          ArtifactName: "$(projectName)"
+          publishLocation: "Container"
+
         
