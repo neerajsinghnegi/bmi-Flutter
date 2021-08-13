@@ -18,12 +18,12 @@ jobs:
       - task: FlutterBuild@0
         inputs:
           target: 'apk'
-          projectDirectory: $(Build.SourcesDirectory/$(projectName))
+          projectDirectory: $(Build.SourcesDirectory)
           buildNumber: ''
 
       - task: CopyFiles@2
         inputs:
-          SourceFolder: '$(Build.SourcesDirectory)/$(projectName)/android/app/build/outputs/apk/$(buildConfiguration)'
+          SourceFolder: '$(Build.SourcesDirectory)/android/app/build/outputs/apk/$(buildConfiguration)'
           contents: "**/app-$(buildConfiguration).apk"
           targetFolder: "$(Build.ArtifactStagingDirectory)/$(projectName)"
         displayName: "Copy unsigned APK to staging directory"
